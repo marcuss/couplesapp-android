@@ -35,3 +35,11 @@ coverage
 # Test results
 test-results
 playwright-report
+
+# Android
+android/.gradle/
+android/app/build/
+*.apk
+*.aab
+*.keystore
+local.properties

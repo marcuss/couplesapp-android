@@ -3,8 +3,10 @@
  * Root component with routing and theme provider
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import DebugPlugin from '../plugins/DebugPlugin';
+import { DebugPanel } from '../components/debug/DebugPanel';
 import { ThemeProvider } from '../design-system/components/ThemeProvider';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ServiceProvider } from '../contexts/ServiceContext';
@@ -24,7 +26,34 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { MainLayout } from './components/MainLayout';
 
 export const App: React.FC = () => {
+  const [showDebug, setShowDebug] = useState(false);
+
+  useEffect(() => {
+    let listenerHandle: { remove: () => void } | null = null;
+
+    const setupShake = async () => {
+      try {
+        const { enabled } = await DebugPlugin.isDebugEnabled();
+        if (enabled) {
+          const handle = await DebugPlugin.addListener('shake', () => {
+            setShowDebug((prev) => !prev);
+          });
+          listenerHandle = handle;
+        }
+      } catch {
+        // Not in Capacitor context — ignore
+      }
+    };
+
+    setupShake();
+    return () => {
+      listenerHandle?.remove();
+    };
+  }, []);
+
   return (
+    <>
+      {showDebug && <DebugPanel onClose={() => setShowDebug(false)} />}
     <ThemeProvider>
       <AuthProvider>
         <ServiceProvider services={container}>
@@ -57,6 +86,7 @@ export const App: React.FC = () => {
         </ServiceProvider>
       </AuthProvider>
     </ThemeProvider>
+    </>
   );
 };
 

@@ -2,9 +2,7 @@ name: CI Checks
 
 on:
   pull_request:
-    branches: [main]
-  push:
-    branches-ignore: [main]
+    branches: [main, develop, 'feature/**', 'fix/**']
 
 jobs:
   test-and-build:

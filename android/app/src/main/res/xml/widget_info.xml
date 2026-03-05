@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Daily Question Widget Provider Info
+  minWidth: 4 cells × (70dp cell + 8dp margin) - margin ≈ 292dp
+  minHeight: 2 cells × (70dp cell + 8dp margin) - margin ≈ 132dp
+-->
+<appwidget-provider
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="292dp"
+    android:minHeight="130dp"
+    android:targetCellWidth="4"
+    android:targetCellHeight="2"
+    android:updatePeriodMillis="86400000"
+    android:initialLayout="@layout/widget_daily_question"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:description="@string/widget_description" />

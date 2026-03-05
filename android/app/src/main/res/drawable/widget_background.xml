@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Rose-to-pink gradient background for Daily Question Widget -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:startColor="#F3436A"
+        android:endColor="#F972A0"
+        android:angle="135"
+        android:type="linear" />
+    <corners android:radius="16dp" />
+</shape>

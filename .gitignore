@@ -43,3 +43,10 @@ android/app/build/
 *.aab
 *.keystore
 local.properties
+*.pem
+*.p12
+*.pfx
+secrets.*
+credentials.*
+terraform.tfvars
+.terraform/

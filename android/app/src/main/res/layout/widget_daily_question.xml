@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Daily Question Widget Layout
+  Size: 4×2 cells (full-width, ~130dp height)
+  Design: rose-to-pink gradient background, white text, compass icon
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_background"
+    android:padding="12dp"
+    android:gravity="center_vertical">
+
+    <!-- Header row: "Question of the Day" + compass -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="6dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Question of the Day"
+            android:textColor="#DDFFFFFF"
+            android:textSize="10sp"
+            android:letterSpacing="0.05"
+            android:textAllCaps="true"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🧭"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Category badge -->
+    <TextView
+        android:id="@+id/widget_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="💬 Communication"
+        android:textColor="#DDFFFFFF"
+        android:textSize="11sp"
+        android:fontFamily="sans-serif-medium"
+        android:background="@drawable/widget_badge_background"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Question text -->
+    <TextView
+        android:id="@+id/widget_question_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What's one thing I do that makes you feel truly heard?"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-bold"
+        android:lineSpacingMultiplier="1.2"
+        android:maxLines="3"
+        android:ellipsize="end" />
+
+</LinearLayout>

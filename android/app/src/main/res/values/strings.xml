@@ -4,4 +4,6 @@
     <string name="title_activity_main">CouplePlan</string>
     <string name="package_name">com.nextasy.couplesapp</string>
     <string name="custom_url_scheme">com.nextasy.couplesapp</string>
+    <string name="widget_description">Shows today\'s couple question from LoveCompass</string>
+    <string name="widget_title">Daily Question</string>
 </resources>

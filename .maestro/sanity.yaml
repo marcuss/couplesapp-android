@@ -1,0 +1,12 @@
+appId: com.nextasy.couplesapp
+name: Sanity - Launch and Screenshot
+flow:
+  - launchApp
+  - waitFor: { visible: true, timeout: 3000 }
+  - takeScreenshot: launch
+YAML
+
+git add .maestro/sanity.yaml
+git -c user.name="ClawBot" -c user.email="actions@users.noreply.github.com" commit -m "test: add Maestro sanity flow (Android)"
+git push -u origin mobile-e2e/maestro-poc
+gh pr create --repo marcuss/couplesapp-android --head mobile-e2e/maestro-poc --base main --title "test: Maestro POC (Android) + sanity flow" --body "Adds initial Maestro flow (.maestro/sanity.yaml). Separate PR will add GH Actions nightly (2 AM COT) to run on emulator and publish report to S3 under mobile/android/YYYY-MM-DD/."

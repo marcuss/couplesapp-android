@@ -15,6 +15,7 @@ import { IGoalService } from '../application/services/IGoalService';
 import { ITaskService } from '../application/services/ITaskService';
 import { IEventService } from '../application/services/IEventService';
 import { IBudgetService } from '../application/services/IBudgetService';
+import { IDailyQuestionService } from '../application/services/IDailyQuestionService';
 
 export interface Services {
   dashboardService: IDashboardService;
@@ -22,6 +23,7 @@ export interface Services {
   taskService: ITaskService;
   eventService: IEventService;
   budgetService: IBudgetService;
+  dailyQuestionService: IDailyQuestionService;
 }
 
 const ServiceContext = createContext<Services | null>(null);
@@ -43,6 +45,7 @@ export const ServiceProvider: React.FC<ServiceProviderProps> = ({ services, chil
  * Hook to access all application services.
  * Must be used within a <ServiceProvider>.
  */
+// eslint-disable-next-line react-refresh/only-export-components
 export function useServices(): Services {
   const ctx = useContext(ServiceContext);
   if (!ctx) {

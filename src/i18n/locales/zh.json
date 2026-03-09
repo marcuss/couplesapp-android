@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "CouplePlan",
+    "appName": "LoveCompass",
     "loading": "加载中...",
     "save": "保存",
     "cancel": "取消",
@@ -46,7 +46,30 @@
     "loginError": "邮箱或密码无效",
     "registerError": "创建账户失败",
     "passwordMismatch": "密码不匹配",
-    "passwordTooShort": "密码至少需要6个字符"
+    "passwordTooShort": "密码至少需要6个字符",
+    "namePlaceholder": "您的姓名",
+    "dateOfBirth": "出生日期",
+    "dateOfBirthPlaceholder": "选择您的出生日期",
+    "gender": "性别",
+    "genderPlaceholder": "选择您的性别",
+    "genderMale": "男",
+    "genderFemale": "女",
+    "genderQueer": "酷儿",
+    "genderNonBinary": "非二元",
+    "genderOther": "其他",
+    "relationshipType": "关系类型",
+    "relationshipTypePlaceholder": "选择您的关系类型",
+    "relationshipDating": "约会中",
+    "relationshipEngaged": "已订婚",
+    "relationshipMarried": "已婚",
+    "relationshipCommitted": "稳定关系",
+    "relationshipOther": "其他",
+    "partnerName": "伴侣姓名",
+    "partnerNamePlaceholder": "您伴侣的姓名",
+    "hasChildren": "您有孩子吗？",
+    "hasChildrenDescription": "来自当前或以前的关系",
+    "emailPlaceholder": "your@email.com",
+    "checkEmail": "我们已向您发送确认邮件。请查看您的收件箱以完成注册。"
   },
   "navigation": {
     "dashboard": "仪表盘",
@@ -214,7 +237,7 @@
   },
   "invite": {
     "title": "邀请伴侣",
-    "subtitle": "连接伴侣开始共同规划",
+    "subtitle": "与伴侣分享此代码以建立连接",
     "partnerEmail": "伴侣邮箱",
     "sendInvitation": "发送邀请",
     "sending": "发送中...",
@@ -224,11 +247,20 @@
     "copyLink": "复制链接",
     "linkCopied": "链接已复制到剪贴板！",
     "shareLink": "与伴侣分享此链接",
-    "alreadyInvited": "你已经向此邮箱发送过邀请"
+    "alreadyInvited": "你已经向此邮箱发送过邀请",
+    "copyCode": "复制代码",
+    "share": "分享",
+    "copied": "已复制！",
+    "scanQR": "扫描此二维码",
+    "expiresIn": "过期时间",
+    "expired": "代码已过期",
+    "generateNew": "生成新代码",
+    "errorCreating": "创建邀请失败，请重试。",
+    "shareText": "加入LoveCompass！使用代码 {{code}}"
   },
   "invitation": {
     "title": "你被邀请了！",
-    "subtitle": "{{name}}想在CouplePlan上与你连接",
+    "subtitle": "{{name}}想在LoveCompass上与你连接",
     "acceptInvitation": "接受邀请",
     "declineInvitation": "拒绝",
     "createAccount": "创建账户接受",
@@ -239,7 +271,7 @@
     "expired": "此邀请已过期",
     "wrongEmail": "此邀请发送到了其他邮箱地址",
     "acceptSuccess": "邀请接受成功！",
-    "welcomeMessage": "欢迎来到CouplePlan！你现在已与{{name}}连接。"
+    "welcomeMessage": "欢迎来到LoveCompass！你现在已与{{name}}连接。"
   },
   "settings": {
     "title": "设置",
@@ -264,10 +296,10 @@
     "deleteConfirm": "确定吗？此操作无法撤销。"
   },
   "email": {
-    "invitationSubject": "你被邀请加入CouplePlan！",
-    "invitationBody": "你好！\n\n{{inviterName}}邀请你加入CouplePlan——情侣共同规划生活的应用。\n\n点击以下链接接受邀请并创建账户：\n\n{{invitationUrl}}\n\n此邀请将在7天后过期。\n\n爱你的，\nCouplePlan团队",
-    "welcomeSubject": "欢迎来到CouplePlan！",
-    "welcomeBody": "你好{{name}}，\n\n欢迎来到CouplePlan！很高兴有你加入。\n\n开始与伴侣规划你们的生活：\n- 创建共享活动\n- 设定伴侣目标\n- 管理预算\n- 追踪任务\n\n立即开始：{{appUrl}}\n\n爱你的，\nCouplePlan团队"
+    "invitationSubject": "你被邀请加入LoveCompass！",
+    "invitationBody": "你好！\n\n{{inviterName}}邀请你加入LoveCompass——情侣共同规划生活的应用。\n\n点击以下链接接受邀请并创建账户：\n\n{{invitationUrl}}\n\n此邀请将在7天后过期。\n\n爱你的，\nLoveCompass团队",
+    "welcomeSubject": "欢迎来到LoveCompass！",
+    "welcomeBody": "你好{{name}}，\n\n欢迎来到LoveCompass！很高兴有你加入。\n\n开始与伴侣规划你们的生活：\n- 创建共享活动\n- 设定伴侣目标\n- 管理预算\n- 追踪任务\n\n立即开始：{{appUrl}}\n\n爱你的，\nLoveCompass团队"
   },
   "errors": {
     "generic": "出了点问题。请重试。",
@@ -277,5 +309,42 @@
     "validation": "请检查输入后重试。",
     "database": "数据库错误。请稍后重试。",
     "rls": "权限被拒绝。请联系支持。"
+  },
+  "success": "请查看您的邮箱！",
+  "join": {
+    "title": "加入伴侣",
+    "subtitle": "输入伴侣分享的6位代码",
+    "connect": "连接",
+    "connecting": "连接中...",
+    "connected": "已连接！",
+    "connectedWith": "您现在与{{name}}已连接。",
+    "yourPartner": "您的伴侣",
+    "goToDashboard": "前往仪表板",
+    "invalidCode": "无效代码。",
+    "expiredCode": "此代码已过期。",
+    "cantInviteSelf": "不能使用自己的邀请代码。",
+    "errorAccepting": "连接失败。",
+    "tryAgain": "重试",
+    "oops": "哎呀！",
+    "needsAccount": "您需要一个账户。",
+    "alreadyHaveAccount": "已有账户？"
+  },
+  "passwordRecovery": {
+    "title": "忘记密码",
+    "subtitle": "输入您的邮箱，我们将发送重置密码的链接",
+    "sendResetLink": "发送重置链接",
+    "emailSentTitle": "请查看邮箱",
+    "emailSentDescription": "如果该邮箱已注册账户，我们已发送密码重置链接。请检查收件箱和垃圾邮件文件夹。",
+    "backToLogin": "返回登录",
+    "resetTitle": "设置新密码",
+    "resetSubtitle": "请输入新密码",
+    "newPassword": "新密码",
+    "resetButton": "重置密码",
+    "resetSuccessTitle": "密码已更新！",
+    "resetSuccessDescription": "您的密码已成功更新。正在跳转到仪表板...",
+    "resetError": "密码重置失败，请重试。",
+    "invalidLink": "链接无效或已过期",
+    "invalidLinkDescription": "此密码重置链接无效或已过期。请重新申请。",
+    "requestNewLink": "申请新链接"
   }
 }

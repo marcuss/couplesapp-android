@@ -97,6 +97,11 @@ export class SupabaseUserRepository implements IUserRepository {
           email: user.email,
           name: user.name,
           partner_id: user.partnerId,
+          date_of_birth: user.dateOfBirth ? user.dateOfBirth.toISOString().split('T')[0] : null,
+          gender: user.gender || null,
+          relationship_type: user.relationshipType || null,
+          partner_name: user.partnerName || null,
+          has_children: user.hasChildren ?? false,
           created_at: user.createdAt.toISOString(),
           updated_at: user.updatedAt.toISOString(),
         });
@@ -194,12 +199,18 @@ export class SupabaseUserRepository implements IUserRepository {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private mapToEntity(data: any): User {
     return User.reconstitute({
       id: data.id,
       email: data.email,
       name: data.name || undefined,
       partnerId: data.partner_id || undefined,
+      dateOfBirth: data.date_of_birth ? new Date(data.date_of_birth) : undefined,
+      gender: data.gender || undefined,
+      relationshipType: data.relationship_type || undefined,
+      partnerName: data.partner_name || undefined,
+      hasChildren: data.has_children ?? false,
       createdAt: new Date(data.created_at),
       updatedAt: new Date(data.updated_at),
     });

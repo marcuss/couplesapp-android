@@ -5,7 +5,8 @@
 
 import { Result, AsyncResult } from '../../../shared/utils/Result';
 import { DomainError, ConflictError, ValidationError } from '../../../domain/errors/DomainError';
-import { User } from '../../../domain/entities/User';
+import { User, VALID_GENDERS, VALID_RELATIONSHIP_TYPES, Gender, RelationshipType } from '../../../domain/entities/User';
+import { Password } from '../../../domain/value-objects/Password';
 import { IUserRepository } from '../../../domain/repositories/IUserRepository';
 import { RegisterDTO, RegisterResult } from '../../dto/RegisterDTO';
 
@@ -52,6 +53,11 @@ export class RegisterUseCase {
       id: authData.user.id,
       email: dto.email,
       name: dto.name,
+      dateOfBirth: dto.dateOfBirth ? new Date(dto.dateOfBirth) : undefined,
+      gender: dto.gender as Gender | undefined,
+      relationshipType: dto.relationshipType as RelationshipType | undefined,
+      partnerName: dto.partnerName,
+      hasChildren: dto.hasChildren,
     });
 
     if (userResult.isFail()) {
@@ -91,24 +97,10 @@ export class RegisterUseCase {
       return new ValidationError('Invalid email format', 'email');
     }
 
-    if (!dto.password || dto.password.length === 0) {
-      return new ValidationError('Password is required', 'password');
-    }
-
-    if (dto.password.length < 8) {
-      return new ValidationError('Password must be at least 8 characters', 'password');
-    }
-
-    // Password strength check
-    const hasUpperCase = /[A-Z]/.test(dto.password);
-    const hasLowerCase = /[a-z]/.test(dto.password);
-    const hasNumbers = /\d/.test(dto.password);
-
-    if (!hasUpperCase || !hasLowerCase || !hasNumbers) {
-      return new ValidationError(
-        'Password must contain at least one uppercase letter, one lowercase letter, and one number',
-        'password'
-      );
+    // Validate password using the Password Value Object (fail fast in domain)
+    const passwordResult = Password.create(dto.password ?? '');
+    if (passwordResult.isFail()) {
+      return passwordResult.getError();
     }
 
     if (!dto.name || dto.name.trim().length === 0) {
@@ -121,6 +113,36 @@ export class RegisterUseCase {
 
     if (dto.name.trim().length > 50) {
       return new ValidationError('Name must be at most 50 characters', 'name');
+    }
+
+    // Validate date of birth
+    if (dto.dateOfBirth) {
+      const dob = new Date(dto.dateOfBirth);
+      if (isNaN(dob.getTime())) {
+        return new ValidationError('Invalid date of birth format', 'dateOfBirth');
+      }
+
+      const now = new Date();
+      if (dob >= now) {
+        return new ValidationError('Date of birth must be in the past', 'dateOfBirth');
+      }
+
+      const ageDiffMs = now.getTime() - dob.getTime();
+      const ageDate = new Date(ageDiffMs);
+      const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+      if (age < 13) {
+        return new ValidationError('User must be at least 13 years old', 'dateOfBirth');
+      }
+    }
+
+    // Validate gender
+    if (dto.gender && !VALID_GENDERS.includes(dto.gender as Gender)) {
+      return new ValidationError('Invalid gender value', 'gender');
+    }
+
+    // Validate relationship type
+    if (dto.relationshipType && !VALID_RELATIONSHIP_TYPES.includes(dto.relationshipType as RelationshipType)) {
+      return new ValidationError('Invalid relationship type', 'relationshipType');
     }
 
     return null;

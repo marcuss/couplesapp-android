@@ -14,12 +14,15 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:debug": "playwright test --debug"
+    "test:e2e:debug": "playwright test --debug",
+    "gen-types": "supabase gen types typescript --project-id klpshxvjzsdqolkrabvb --schema public > src/types/database.types.ts",
+    "gen-types:check": "supabase gen types typescript --project-id klpshxvjzsdqolkrabvb --schema public | diff src/types/database.types.ts - && echo \"Types are up to date\" || (echo \"ERROR: Types are out of date. Run npm run gen-types\" && exit 1)"
   },
   "dependencies": {
-    "@capacitor/android": "^8.1.0",
-    "@capacitor/cli": "^8.1.0",
+    "@capacitor/android": "^8.2.0",
+    "@capacitor/cli": "^8.2.0",
     "@capacitor/core": "^8.1.0",
+    "@capacitor/geolocation": "^8.1.0",
     "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -60,6 +63,8 @@
     "input-otp": "^1.4.2",
     "lucide-react": "^0.562.0",
     "next-themes": "^0.4.6",
+    "openai": "^6.25.0",
+    "qrcode.react": "^4.2.0",
     "react": "^19.2.0",
     "react-day-picker": "^9.13.0",
     "react-dom": "^19.2.0",

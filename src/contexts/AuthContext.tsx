@@ -9,10 +9,16 @@ interface AuthContextType {
   isLoading: boolean;
   login: (email: string, password: string) => Promise<{ error: Error | null }>;
   logout: () => Promise<void>;
-  register: (email: string, password: string, name: string) => Promise<{ error: Error | null }>;
+  register: (email: string, password: string, name: string, dateOfBirth: string, gender?: string, relationshipType?: string, partnerName?: string, hasChildren?: boolean) => Promise<{ error: Error | null }>;
   acceptInvitation: (token: string, password: string, name: string) => Promise<{ error: Error | null }>;
   invitePartner: (email: string) => Promise<{ error: Error | null; data?: { token: string; invitationUrl: string } }>;
   disconnectPartner: () => Promise<{ error: Error | null }>;
+  /** Initiate Google OAuth flow (redirects browser to Google) */
+  signInWithGoogle: () => Promise<{ error: Error | null }>;
+  /** Initiate Apple OAuth flow (redirects browser to Apple) */
+  signInWithApple: () => Promise<{ error: Error | null }>;
+  /** Handle the OAuth redirect callback, parse session, load profile */
+  handleOAuthCallback: (url?: string) => Promise<{ error: Error | null }>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -68,11 +74,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       if (profile) {
+        // Buscar coupleId si el usuario tiene pareja
+        let coupleId: string | undefined;
+        if (profile.partner_id) {
+          const { data: coupleData } = await supabase
+            .from('couples')
+            .select('id')
+            .or(`partner1_id.eq.${userId},partner2_id.eq.${userId}`)
+            .single();
+          coupleId = coupleData?.id ?? undefined;
+        }
+
         setUser({
           id: profile.id,
           email: profile.email,
           name: profile.name || undefined,
           partnerId: profile.partner_id || undefined,
+          coupleId,
         });
 
         // Load partner if exists
@@ -109,9 +127,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return { error };
       }
 
-      if (data.user) {
-        await loadUserProfile(data.user.id);
+      // When Supabase has email enumeration protection enabled,
+      // a non-existent email returns no error but also no user/session.
+      // Treat this as an authentication failure with a generic message
+      // to avoid revealing whether the email exists.
+      if (!data.user || !data.session) {
+        return { error: new Error('Invalid credentials') };
       }
+
+      await loadUserProfile(data.user.id);
 
       return { error: null };
     } catch (error) {
@@ -129,7 +153,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const register = useCallback(async (email: string, password: string, name: string) => {
+  const register = useCallback(async (email: string, password: string, name: string, dateOfBirth: string, gender?: string, relationshipType?: string, partnerName?: string, hasChildren?: boolean) => {
     try {
       // Sign up the user
       const { data: authData, error: authError } = await supabase.auth.signUp({
@@ -153,6 +177,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           id: authData.user.id,
           email: authData.user.email!,
           name,
+          date_of_birth: dateOfBirth || null,
+          gender: gender || null,
+          relationship_type: relationshipType || null,
+          partner_name: partnerName || null,
+          has_children: hasChildren ?? false,
         });
 
       if (profileError) {
@@ -217,18 +246,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return { error: new Error('You must be logged in to invite a partner') };
       }
 
-      // Generate a unique token
-      const token = crypto.randomUUID();
+      // Generate a unique id (used as token in invitation URL)
+      const id = crypto.randomUUID();
       
       // Create invitation in database
       const { error: inviteError } = await supabase
         .from('invitations')
         .insert({
-          token,
-          inviter_id: user.id,
-          email: email.trim().toLowerCase(),
+          id,
+          from_user_id: user.id,
+          to_email: email.trim().toLowerCase(),
           status: 'pending',
-          expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
         });
 
       if (inviteError) {
@@ -237,7 +265,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       // Get the base URL from environment variable or fallback
       const baseUrl = import.meta.env.VITE_APP_URL || window.location.origin;
-      const invitationUrl = `${baseUrl}/invitation/${token}`;
+      const invitationUrl = `${baseUrl}/invitation/${id}`;
 
       // Enviar email de invitación vía EmailJS
       try {
@@ -257,7 +285,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return { 
         error: null, 
         data: { 
-          token, 
+          token: id, 
           invitationUrl 
         } 
       };
@@ -304,6 +332,53 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [user, partner]);
 
+  const signInWithGoogle = useCallback(async () => {
+    try {
+      const appUrl = import.meta.env.VITE_APP_URL || window.location.origin;
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${appUrl}/auth/callback`,
+          scopes: 'email profile',
+        },
+      });
+      return { error: error as Error | null };
+    } catch (error) {
+      return { error: error as Error };
+    }
+  }, []);
+
+  const signInWithApple = useCallback(async () => {
+    try {
+      const appUrl = import.meta.env.VITE_APP_URL || window.location.origin;
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'apple',
+        options: {
+          redirectTo: `${appUrl}/auth/callback`,
+        },
+      });
+      return { error: error as Error | null };
+    } catch (error) {
+      return { error: error as Error };
+    }
+  }, []);
+
+  const handleOAuthCallback = useCallback(async (_url?: string) => {
+    try {
+      // Supabase with detectSessionInUrl:true already parsed the URL.
+      // Just fetch the current session and load the profile.
+      const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+      if (sessionError) return { error: sessionError as Error };
+      if (!sessionData?.session?.user) {
+        return { error: new Error('No valid session in OAuth callback') };
+      }
+      await loadUserProfile(sessionData.session.user.id);
+      return { error: null };
+    } catch (error) {
+      return { error: error as Error };
+    }
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -316,6 +391,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         acceptInvitation,
         invitePartner,
         disconnectPartner,
+        signInWithGoogle,
+        signInWithApple,
+        handleOAuthCallback,
       }}
     >
       {children}
@@ -323,6 +401,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {

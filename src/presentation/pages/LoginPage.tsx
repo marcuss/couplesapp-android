@@ -8,18 +8,47 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Heart, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
-import { LanguageSelector } from '../components/LanguageSelector';
-import { ThemeToggle } from '../components/ThemeToggle';
+import { OAuthButton } from '../components/OAuthButton';
 
 export const LoginPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { login } = useAuth();
+  // TODO: Re-enable signInWithApple when Apple Developer account is ready
+  const { login, signInWithGoogle, signInWithApple: _signInWithApple } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const [_isAppleLoading, _setIsAppleLoading] = useState(false);
+
+  const handleGoogleLogin = async () => {
+    setError(null);
+    setIsGoogleLoading(true);
+    try {
+      const { error } = await signInWithGoogle();
+      if (error) setError('No se pudo iniciar sesión con Google. Verificá que esté configurado.');
+    } catch {
+      setError(t('errors.generic'));
+    } finally {
+      setIsGoogleLoading(false);
+    }
+  };
+
+  // TODO: Re-enable when Apple Developer account is ready
+  const _handleAppleLogin = async () => {
+    setError(null);
+    _setIsAppleLoading(true);
+    try {
+      const { error } = await _signInWithApple();
+      if (error) setError('No se pudo iniciar sesión con Apple. Verificá que esté configurado.');
+    } catch {
+      setError(t('errors.generic'));
+    } finally {
+      _setIsAppleLoading(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +62,7 @@ export const LoginPage: React.FC = () => {
       } else {
         navigate('/dashboard');
       }
-    } catch (err) {
+    } catch {
       setError(t('errors.generic'));
     } finally {
       setIsLoading(false);
@@ -42,12 +71,6 @@ export const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-rose-50 to-pink-100 dark:from-gray-900 dark:to-gray-800 px-4">
-      {/* Top Right Actions */}
-      <div className="absolute top-4 right-4 flex items-center gap-2">
-        <LanguageSelector />
-        <ThemeToggle />
-      </div>
-
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="flex justify-center mb-8">
@@ -120,6 +143,17 @@ export const LoginPage: React.FC = () => {
               </div>
             </div>
 
+            {/* Forgot Password */}
+            <div className="text-right">
+              <Link
+                to="/forgot-password"
+                className="text-sm text-rose-500 hover:text-rose-600 font-medium"
+                data-testid="forgot-password-link"
+              >
+                {t('auth.forgotPassword')}
+              </Link>
+            </div>
+
             {/* Submit */}
             <button
               type="submit"
@@ -130,6 +164,36 @@ export const LoginPage: React.FC = () => {
               {isLoading ? t('common.loading') : t('auth.login')}
             </button>
           </form>
+
+          {/* OAuth Divider */}
+          <div className="mt-6 relative" data-testid="oauth-divider">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-200 dark:border-gray-600" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="bg-white dark:bg-gray-800 px-3 text-gray-500 dark:text-gray-400">
+                O continuar con
+              </span>
+            </div>
+          </div>
+
+          {/* OAuth Buttons */}
+          <div className="mt-4 space-y-3" data-testid="oauth-buttons">
+            <OAuthButton
+              provider="google"
+              onClick={handleGoogleLogin}
+              isLoading={isGoogleLoading}
+              disabled={isLoading}
+            />
+            {/* TODO: Enable when Apple Developer account is ready
+            <OAuthButton
+              provider="apple"
+              onClick={handleAppleLogin}
+              isLoading={isAppleLoading}
+              disabled={isLoading || isGoogleLoading}
+            />
+            */}
+          </div>
 
           {/* Register Link */}
           <p className="mt-6 text-center text-gray-600 dark:text-gray-400">

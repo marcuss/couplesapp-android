@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "CouplePlan",
+    "appName": "LoveCompass",
     "loading": "로딩 중...",
     "save": "저장",
     "cancel": "취소",
@@ -46,7 +46,30 @@
     "loginError": "이메일 또는 비밀번호가 잘못되었습니다",
     "registerError": "계정 생성에 실패했습니다",
     "passwordMismatch": "비밀번호가 일치하지 않습니다",
-    "passwordTooShort": "비밀번호는 최소 6자 이상이어야 합니다"
+    "passwordTooShort": "비밀번호는 최소 6자 이상이어야 합니다",
+    "namePlaceholder": "이름",
+    "dateOfBirth": "생년월일",
+    "dateOfBirthPlaceholder": "생년월일을 선택하세요",
+    "gender": "성별",
+    "genderPlaceholder": "성별을 선택하세요",
+    "genderMale": "남성",
+    "genderFemale": "여성",
+    "genderQueer": "퀴어",
+    "genderNonBinary": "논바이너리",
+    "genderOther": "기타",
+    "relationshipType": "관계 유형",
+    "relationshipTypePlaceholder": "관계 유형을 선택하세요",
+    "relationshipDating": "연애 중",
+    "relationshipEngaged": "약혼",
+    "relationshipMarried": "기혼",
+    "relationshipCommitted": "동거 관계",
+    "relationshipOther": "기타",
+    "partnerName": "파트너 이름",
+    "partnerNamePlaceholder": "파트너의 이름",
+    "hasChildren": "자녀가 있나요?",
+    "hasChildrenDescription": "현재 또는 이전 관계에서",
+    "emailPlaceholder": "your@email.com",
+    "checkEmail": "확인 이메일을 보냈습니다. 등록을 완료하려면 받은 편지함을 확인하세요."
   },
   "navigation": {
     "dashboard": "대시보드",
@@ -214,7 +237,7 @@
   },
   "invite": {
     "title": "파트너 초대",
-    "subtitle": "파트너와 연결하여 함께 계획을 시작하세요",
+    "subtitle": "파트너에게 이 코드를 공유하세요",
     "partnerEmail": "파트너 이메일",
     "sendInvitation": "초대 볂내기",
     "sending": "볂내는 중...",
@@ -224,11 +247,20 @@
     "copyLink": "링크 복사",
     "linkCopied": "링크가 클립보드에 복사되었습니다!",
     "shareLink": "파트너와 이 링크를 공유하세요",
-    "alreadyInvited": "이미 이 이메일로 초대를 볂냈습니다"
+    "alreadyInvited": "이미 이 이메일로 초대를 볂냈습니다",
+    "copyCode": "코드 복사",
+    "share": "공유",
+    "copied": "복사됨!",
+    "scanQR": "QR 코드를 스캔하세요",
+    "expiresIn": "만료까지",
+    "expired": "코드 만료됨",
+    "generateNew": "새 코드 생성",
+    "errorCreating": "초대 생성 실패. 다시 시도하세요.",
+    "shareText": "LoveCompass에서 함께해요! 코드 {{code}} 사용"
   },
   "invitation": {
     "title": "초대받으셨습니다!",
-    "subtitle": "{{name}}님이 CouplePlan에서 당신과 연결하고 싶어합니다",
+    "subtitle": "{{name}}님이 LoveCompass에서 당신과 연결하고 싶어합니다",
     "acceptInvitation": "초대 수락",
     "declineInvitation": "거절",
     "createAccount": "수락하려면 계정 만들기",
@@ -239,7 +271,7 @@
     "expired": "이 초대는 만료되었습니다",
     "wrongEmail": "이 초대는 다른 이메일 주소로 볂내졌습니다",
     "acceptSuccess": "초대가 성공적으로 수락되었습니다!",
-    "welcomeMessage": "CouplePlan에 오신 것을 환영합니다! 이제 {{name}}님과 연결되었습니다."
+    "welcomeMessage": "LoveCompass에 오신 것을 환영합니다! 이제 {{name}}님과 연결되었습니다."
   },
   "settings": {
     "title": "설정",
@@ -264,10 +296,10 @@
     "deleteConfirm": "확실합니까? 이 작업은 취소할 수 없습니다."
   },
   "email": {
-    "invitationSubject": "CouplePlan에 초대되셨습니다!",
-    "invitationBody": "안녕하세요!\n\n{{inviterName}}님이 CouplePlan에 초대했습니다 - 커플이 함께 삶을 계획하는 앱입니다.\n\n아래 링크를 클릭하여 초대를 수락하고 계정을 만드세요:\n\n{{invitationUrl}}\n\n이 초대는 7일 후에 만료됩니다.\n\n사랑을 담아,\nCouplePlan 팀",
-    "welcomeSubject": "CouplePlan에 오신 것을 환영합니다!",
-    "welcomeBody": "안녕하세요 {{name}}님,\n\nCouplePlan에 오신 것을 환영합니다! 당신을 함께하게 되어 기쁩니다.\n\n파트너와 함께 삶을 계획하기 시작하세요:\n- 공유 이벤트 만들기\n- 커플 목표 설정\n- 예산 관리\n- 할 일 추적\n\n지금 시작하기: {{appUrl}}\n\n사랑을 담아,\nCouplePlan 팀"
+    "invitationSubject": "LoveCompass에 초대되셨습니다!",
+    "invitationBody": "안녕하세요!\n\n{{inviterName}}님이 LoveCompass에 초대했습니다 - 커플이 함께 삶을 계획하는 앱입니다.\n\n아래 링크를 클릭하여 초대를 수락하고 계정을 만드세요:\n\n{{invitationUrl}}\n\n이 초대는 7일 후에 만료됩니다.\n\n사랑을 담아,\nLoveCompass 팀",
+    "welcomeSubject": "LoveCompass에 오신 것을 환영합니다!",
+    "welcomeBody": "안녕하세요 {{name}}님,\n\nLoveCompass에 오신 것을 환영합니다! 당신을 함께하게 되어 기쁩니다.\n\n파트너와 함께 삶을 계획하기 시작하세요:\n- 공유 이벤트 만들기\n- 커플 목표 설정\n- 예산 관리\n- 할 일 추적\n\n지금 시작하기: {{appUrl}}\n\n사랑을 담아,\nLoveCompass 팀"
   },
   "errors": {
     "generic": "문제가 발생했습니다. 다시 시도해 주세요.",
@@ -277,5 +309,42 @@
     "validation": "입력을 확인하고 다시 시도해 주세요.",
     "database": "데이터베이스 오류입니다. 나중에 다시 시도해 주세요.",
     "rls": "권한이 거부되었습니다. 지원팀에 문의하세요."
+  },
+  "success": "이메일을 확인하세요!",
+  "join": {
+    "title": "파트너와 연결",
+    "subtitle": "파트너가 공유한 6자리 코드를 입력하세요",
+    "connect": "연결",
+    "connecting": "연결 중...",
+    "connected": "연결됨!",
+    "connectedWith": "{{name}}님과 연결되었습니다.",
+    "yourPartner": "파트너",
+    "goToDashboard": "대시보드로 이동",
+    "invalidCode": "잘못된 코드입니다.",
+    "expiredCode": "이 코드는 만료되었습니다.",
+    "cantInviteSelf": "자신의 초대 코드는 사용할 수 없습니다.",
+    "errorAccepting": "연결 실패.",
+    "tryAgain": "다시 시도",
+    "oops": "이런!",
+    "needsAccount": "계정이 필요합니다.",
+    "alreadyHaveAccount": "이미 계정이 있으신가요?"
+  },
+  "passwordRecovery": {
+    "title": "비밀번호 찾기",
+    "subtitle": "이메일을 입력하시면 비밀번호 재설정 링크를 보내드립니다",
+    "sendResetLink": "재설정 링크 보내기",
+    "emailSentTitle": "이메일을 확인하세요",
+    "emailSentDescription": "해당 이메일로 등록된 계정이 있다면 비밀번호 재설정 링크를 보냈습니다. 받은편지함과 스팸 폴더를 확인해주세요.",
+    "backToLogin": "로그인으로 돌아가기",
+    "resetTitle": "새 비밀번호 설정",
+    "resetSubtitle": "새 비밀번호를 입력하세요",
+    "newPassword": "새 비밀번호",
+    "resetButton": "비밀번호 재설정",
+    "resetSuccessTitle": "비밀번호가 변경되었습니다!",
+    "resetSuccessDescription": "비밀번호가 성공적으로 변경되었습니다. 대시보드로 이동합니다...",
+    "resetError": "비밀번호를 재설정할 수 없습니다. 다시 시도해주세요.",
+    "invalidLink": "유효하지 않거나 만료된 링크",
+    "invalidLinkDescription": "이 비밀번호 재설정 링크는 유효하지 않거나 만료되었습니다. 새 링크를 요청하세요.",
+    "requestNewLink": "새 링크 요청"
   }
 }

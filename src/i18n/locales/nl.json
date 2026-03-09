@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "CouplePlan",
+    "appName": "LoveCompass",
     "loading": "Laden...",
     "save": "Opslaan",
     "cancel": "Annuleren",
@@ -46,7 +46,30 @@
     "loginError": "Ongeldig e-mailadres of wachtwoord",
     "registerError": "Account aanmaken mislukt",
     "passwordMismatch": "Wachtwoorden komen niet overeen",
-    "passwordTooShort": "Wachtwoord moet minimaal 6 tekens bevatten"
+    "passwordTooShort": "Wachtwoord moet minimaal 6 tekens bevatten",
+    "namePlaceholder": "Uw naam",
+    "dateOfBirth": "Geboortedatum",
+    "dateOfBirthPlaceholder": "Selecteer uw geboortedatum",
+    "gender": "Geslacht",
+    "genderPlaceholder": "Selecteer uw geslacht",
+    "genderMale": "Man",
+    "genderFemale": "Vrouw",
+    "genderQueer": "Queer",
+    "genderNonBinary": "Non-binair",
+    "genderOther": "Anders",
+    "relationshipType": "Relatietype",
+    "relationshipTypePlaceholder": "Selecteer uw relatietype",
+    "relationshipDating": "Daten",
+    "relationshipEngaged": "Verloofd",
+    "relationshipMarried": "Getrouwd",
+    "relationshipCommitted": "Vaste relatie",
+    "relationshipOther": "Anders",
+    "partnerName": "Naam van partner",
+    "partnerNamePlaceholder": "De naam van uw partner",
+    "hasChildren": "Heeft u kinderen?",
+    "hasChildrenDescription": "Uit deze of eerdere relaties",
+    "emailPlaceholder": "uw@email.com",
+    "checkEmail": "We hebben u een bevestigingsmail gestuurd. Controleer uw inbox om de registratie te voltooien."
   },
   "navigation": {
     "dashboard": "Dashboard",
@@ -213,22 +236,31 @@
     "tip3": "Regelmatige date nights houden de vonk levend"
   },
   "invite": {
-    "title": "Partner Uitnodigen",
-    "subtitle": "Verbind met je partner om samen te beginnen plannen",
+    "title": "Nodig Je Partner Uit",
+    "subtitle": "Deel deze code met je partner",
     "partnerEmail": "E-mail van Partner",
     "sendInvitation": "Uitnodiging Verzenden",
     "sending": "Bezig met verzenden...",
     "invitationSent": "Uitnodiging succesvol verzonden!",
     "invitationError": "Uitnodiging verzenden mislukt",
     "invitationLink": "Uitnodigingslink",
-    "copyLink": "Link Kopiëren",
+    "copyLink": "Kopieer Link",
     "linkCopied": "Link gekopieerd naar klembord!",
     "shareLink": "Deel deze link met je partner",
-    "alreadyInvited": "Je hebt al een uitnodiging naar dit e-mailadres gestuurd"
+    "alreadyInvited": "Je hebt al een uitnodiging naar dit e-mailadres gestuurd",
+    "copyCode": "Kopieer Code",
+    "share": "Delen",
+    "copied": "Gekopieerd!",
+    "scanQR": "Scan deze QR-code",
+    "expiresIn": "Verloopt over",
+    "expired": "Code verlopen",
+    "generateNew": "Nieuwe Code Genereren",
+    "errorCreating": "Uitnodiging maken mislukt.",
+    "shareText": "Doe mee op LoveCompass! Gebruik code {{code}}"
   },
   "invitation": {
     "title": "Je Bent Uitgenodigd!",
-    "subtitle": "{{name}} wil met je verbinden op CouplePlan",
+    "subtitle": "{{name}} wil met je verbinden op LoveCompass",
     "acceptInvitation": "Uitnodiging Accepteren",
     "declineInvitation": "Afwijzen",
     "createAccount": "Account Maken om te Accepteren",
@@ -239,7 +271,7 @@
     "expired": "Deze uitnodiging is verlopen",
     "wrongEmail": "Deze uitnodiging is naar een ander e-mailadres gestuurd",
     "acceptSuccess": "Uitnodiging succesvol geaccepteerd!",
-    "welcomeMessage": "Welkom bij CouplePlan! Je bent nu verbonden met {{name}}."
+    "welcomeMessage": "Welkom bij LoveCompass! Je bent nu verbonden met {{name}}."
   },
   "settings": {
     "title": "Instellingen",
@@ -264,10 +296,10 @@
     "deleteConfirm": "Weet je het zeker? Deze actie kan niet ongedaan worden gemaakt."
   },
   "email": {
-    "invitationSubject": "Je bent uitgenodigd om lid te worden van CouplePlan!",
-    "invitationBody": "Hallo!\n\n{{inviterName}} heeft je uitgenodigd om lid te worden van CouplePlan - de app voor koppels om hun leven samen te plannen.\n\nKlik op de link hieronder om de uitnodiging te accepteren en je account aan te maken:\n\n{{invitationUrl}}\n\nDeze uitnodiging verloopt over 7 dagen.\n\nMet liefde,\nHet CouplePlan Team",
-    "welcomeSubject": "Welkom bij CouplePlan!",
-    "welcomeBody": "Hallo {{name}},\n\nWelkom bij CouplePlan! We zijn blij dat je erbij bent.\n\nBegin met het plannen van je leven samen met je partner:\n- Gedeelde evenementen maken\n- Koppeldoelen stellen\n- Je budget beheren\n- Taken volgen\n\nBegin nu: {{appUrl}}\n\nMet liefde,\nHet CouplePlan Team"
+    "invitationSubject": "Je bent uitgenodigd om lid te worden van LoveCompass!",
+    "invitationBody": "Hallo!\n\n{{inviterName}} heeft je uitgenodigd om lid te worden van LoveCompass - de app voor koppels om hun leven samen te plannen.\n\nKlik op de link hieronder om de uitnodiging te accepteren en je account aan te maken:\n\n{{invitationUrl}}\n\nDeze uitnodiging verloopt over 7 dagen.\n\nMet liefde,\nHet LoveCompass Team",
+    "welcomeSubject": "Welkom bij LoveCompass!",
+    "welcomeBody": "Hallo {{name}},\n\nWelkom bij LoveCompass! We zijn blij dat je erbij bent.\n\nBegin met het plannen van je leven samen met je partner:\n- Gedeelde evenementen maken\n- Koppeldoelen stellen\n- Je budget beheren\n- Taken volgen\n\nBegin nu: {{appUrl}}\n\nMet liefde,\nHet LoveCompass Team"
   },
   "errors": {
     "generic": "Er is iets misgegaan. Probeer het opnieuw.",
@@ -277,5 +309,42 @@
     "validation": "Controleer je invoer en probeer het opnieuw.",
     "database": "Databasefout. Probeer het later opnieuw.",
     "rls": "Toestemming geweigerd. Neem contact op met ondersteuning."
+  },
+  "success": "Controleer uw e-mail!",
+  "join": {
+    "title": "Verbind met Je Partner",
+    "subtitle": "Voer de 6-cijferige code in die je partner heeft gedeeld",
+    "connect": "Verbinden",
+    "connecting": "Verbinden...",
+    "connected": "Verbonden!",
+    "connectedWith": "Je bent nu verbonden met {{name}}.",
+    "yourPartner": "je partner",
+    "goToDashboard": "Ga naar Dashboard",
+    "invalidCode": "Ongeldige code.",
+    "expiredCode": "Deze code is verlopen.",
+    "cantInviteSelf": "Je kunt je eigen code niet gebruiken.",
+    "errorAccepting": "Verbinding mislukt.",
+    "tryAgain": "Opnieuw Proberen",
+    "oops": "Oeps!",
+    "needsAccount": "Je hebt een account nodig.",
+    "alreadyHaveAccount": "Heb je al een account?"
+  },
+  "passwordRecovery": {
+    "title": "Wachtwoord vergeten",
+    "subtitle": "Voer je e-mailadres in en we sturen je een link om je wachtwoord te resetten",
+    "sendResetLink": "Resetlink versturen",
+    "emailSentTitle": "Controleer je e-mail",
+    "emailSentDescription": "Als er een account bestaat met dit e-mailadres, hebben we je een link gestuurd om je wachtwoord te resetten. Controleer je inbox en spammap.",
+    "backToLogin": "Terug naar inloggen",
+    "resetTitle": "Nieuw wachtwoord",
+    "resetSubtitle": "Voer je nieuwe wachtwoord in",
+    "newPassword": "Nieuw wachtwoord",
+    "resetButton": "Wachtwoord resetten",
+    "resetSuccessTitle": "Wachtwoord bijgewerkt!",
+    "resetSuccessDescription": "Je wachtwoord is bijgewerkt. Je wordt doorgestuurd naar het dashboard...",
+    "resetError": "Kan wachtwoord niet resetten. Probeer het opnieuw.",
+    "invalidLink": "Ongeldige of verlopen link",
+    "invalidLinkDescription": "Deze resetlink is ongeldig of verlopen. Vraag een nieuwe aan.",
+    "requestNewLink": "Nieuwe link aanvragen"
   }
 }

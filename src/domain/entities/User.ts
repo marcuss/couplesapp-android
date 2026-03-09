@@ -6,12 +6,23 @@
 import { Result } from '../../shared/utils/Result';
 import { ValidationError } from '../errors/DomainError';
 
+export const VALID_GENDERS = ['male', 'female', 'queer', 'non_binary', 'other'] as const;
+export type Gender = typeof VALID_GENDERS[number];
+
+export const VALID_RELATIONSHIP_TYPES = ['dating', 'engaged', 'married', 'committed', 'other'] as const;
+export type RelationshipType = typeof VALID_RELATIONSHIP_TYPES[number];
+
 export interface UserProps {
   id: string;
   email: string;
   name: string;
   partnerId?: string;
   avatarUrl?: string;
+  dateOfBirth?: Date;
+  gender?: Gender;
+  relationshipType?: RelationshipType;
+  partnerName?: string;
+  hasChildren?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -21,6 +32,11 @@ export interface CreateUserProps {
   email: string;
   name: string;
   avatarUrl?: string;
+  dateOfBirth?: Date;
+  gender?: Gender;
+  relationshipType?: RelationshipType;
+  partnerName?: string;
+  hasChildren?: boolean;
 }
 
 export class User {
@@ -45,6 +61,24 @@ export class User {
     const nameValidation = this.validateName(props.name);
     if (nameValidation.isFail()) {
       return Result.fail(nameValidation.getError());
+    }
+
+    // Validate date of birth (if provided)
+    if (props.dateOfBirth !== undefined) {
+      const dobValidation = this.validateDateOfBirth(props.dateOfBirth);
+      if (dobValidation.isFail()) {
+        return Result.fail(dobValidation.getError());
+      }
+    }
+
+    // Validate gender (if provided)
+    if (props.gender !== undefined && !VALID_GENDERS.includes(props.gender)) {
+      return Result.fail(new ValidationError('Invalid gender value', 'gender'));
+    }
+
+    // Validate relationship type (if provided)
+    if (props.relationshipType !== undefined && !VALID_RELATIONSHIP_TYPES.includes(props.relationshipType)) {
+      return Result.fail(new ValidationError('Invalid relationship type', 'relationshipType'));
     }
 
     const now = new Date();
@@ -77,6 +111,25 @@ export class User {
     const emailRegex = /^[a-zA-Z0-9]+([._-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
       return Result.fail(new ValidationError('Invalid email format', 'email'));
+    }
+
+    return Result.ok(undefined);
+  }
+
+  /**
+   * Validate date of birth
+   */
+  private static validateDateOfBirth(dateOfBirth: Date): Result<void, ValidationError> {
+    const now = new Date();
+    if (dateOfBirth >= now) {
+      return Result.fail(new ValidationError('Date of birth must be in the past', 'dateOfBirth'));
+    }
+
+    const ageDiffMs = now.getTime() - dateOfBirth.getTime();
+    const ageDate = new Date(ageDiffMs);
+    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    if (age < 13) {
+      return Result.fail(new ValidationError('User must be at least 13 years old', 'dateOfBirth'));
     }
 
     return Result.ok(undefined);
@@ -120,6 +173,26 @@ export class User {
 
   get avatarUrl(): string | undefined {
     return this.props.avatarUrl;
+  }
+
+  get dateOfBirth(): Date | undefined {
+    return this.props.dateOfBirth;
+  }
+
+  get gender(): Gender | undefined {
+    return this.props.gender;
+  }
+
+  get relationshipType(): RelationshipType | undefined {
+    return this.props.relationshipType;
+  }
+
+  get partnerName(): string | undefined {
+    return this.props.partnerName;
+  }
+
+  get hasChildren(): boolean | undefined {
+    return this.props.hasChildren;
   }
 
   get createdAt(): Date {

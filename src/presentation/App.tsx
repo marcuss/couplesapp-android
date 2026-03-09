@@ -3,10 +3,8 @@
  * Root component with routing and theme provider
  */
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import DebugPlugin from '../plugins/DebugPlugin';
-import { DebugPanel } from '../components/debug/DebugPanel';
 import { ThemeProvider } from '../design-system/components/ThemeProvider';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ServiceProvider } from '../contexts/ServiceContext';
@@ -20,40 +18,18 @@ import { EventsPage } from './pages/EventsPage';
 import { TasksPage } from './pages/TasksPage';
 import { InvitationPage } from './pages/InvitationPage';
 import { InvitePartnerPage } from './pages/InvitePartnerPage';
+import { JoinPage } from './pages/JoinPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { SettingsPage } from './pages/SettingsPage';
+import { DailyQuestionPage } from './pages/DailyQuestionPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { MainLayout } from './components/MainLayout';
+import { AuthCallbackPage } from './pages/AuthCallbackPage';
+import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
+import { ResetPasswordPage } from './pages/ResetPasswordPage';
 
 export const App: React.FC = () => {
-  const [showDebug, setShowDebug] = useState(false);
-
-  useEffect(() => {
-    let listenerHandle: { remove: () => void } | null = null;
-
-    const setupShake = async () => {
-      try {
-        const { enabled } = await DebugPlugin.isDebugEnabled();
-        if (enabled) {
-          const handle = await DebugPlugin.addListener('shake', () => {
-            setShowDebug((prev) => !prev);
-          });
-          listenerHandle = handle;
-        }
-      } catch {
-        // Not in Capacitor context — ignore
-      }
-    };
-
-    setupShake();
-    return () => {
-      listenerHandle?.remove();
-    };
-  }, []);
-
   return (
-    <>
-      {showDebug && <DebugPanel onClose={() => setShowDebug(false)} />}
     <ThemeProvider>
       <AuthProvider>
         <ServiceProvider services={container}>
@@ -63,6 +39,11 @@ export const App: React.FC = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/invitation/:token" element={<InvitationPage />} />
+            <Route path="/join/:code?" element={<JoinPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
+            {/* OAuth callback — Supabase redirects here after Google/Apple login */}
+            <Route path="/auth/callback" element={<AuthCallbackPage />} />
 
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
@@ -75,6 +56,7 @@ export const App: React.FC = () => {
                 <Route path="/invite" element={<InvitePartnerPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/daily-question" element={<DailyQuestionPage />} />
               </Route>
             </Route>
 
@@ -86,7 +68,6 @@ export const App: React.FC = () => {
         </ServiceProvider>
       </AuthProvider>
     </ThemeProvider>
-    </>
   );
 };
 

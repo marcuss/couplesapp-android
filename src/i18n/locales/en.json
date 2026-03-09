@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "CouplePlan",
+    "appName": "LoveCompass",
     "loading": "Loading...",
     "save": "Save",
     "cancel": "Cancel",
@@ -46,7 +46,30 @@
     "loginError": "Invalid email or password",
     "registerError": "Failed to create account",
     "passwordMismatch": "Passwords do not match",
-    "passwordTooShort": "Password must be at least 6 characters"
+    "passwordTooShort": "Password must be at least 6 characters",
+    "namePlaceholder": "Your name",
+    "dateOfBirth": "Date of Birth",
+    "dateOfBirthPlaceholder": "Select your date of birth",
+    "gender": "Gender",
+    "genderPlaceholder": "Select your gender",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "genderQueer": "Queer",
+    "genderNonBinary": "Non-binary",
+    "genderOther": "Other",
+    "relationshipType": "Relationship Type",
+    "relationshipTypePlaceholder": "Select your relationship type",
+    "relationshipDating": "Dating",
+    "relationshipEngaged": "Engaged",
+    "relationshipMarried": "Married",
+    "relationshipCommitted": "Committed (not married)",
+    "relationshipOther": "Other",
+    "partnerName": "Partner's Name",
+    "partnerNamePlaceholder": "Your partner's name",
+    "hasChildren": "Do you have children?",
+    "hasChildrenDescription": "From this or previous relationships",
+    "emailPlaceholder": "your@email.com",
+    "checkEmail": "We sent you a confirmation email. Please check your inbox to complete registration."
   },
   "navigation": {
     "dashboard": "Dashboard",
@@ -213,8 +236,8 @@
     "tip3": "Regular date nights keep the spark alive"
   },
   "invite": {
-    "title": "Invite Partner",
-    "subtitle": "Connect with your partner to start planning together",
+    "title": "Invite Your Partner",
+    "subtitle": "Share this code with your partner to connect",
     "partnerEmail": "Partner's Email",
     "sendInvitation": "Send Invitation",
     "sending": "Sending...",
@@ -224,11 +247,20 @@
     "copyLink": "Copy Link",
     "linkCopied": "Link copied to clipboard!",
     "shareLink": "Share this link with your partner",
-    "alreadyInvited": "You've already sent an invitation to this email"
+    "alreadyInvited": "You've already sent an invitation to this email",
+    "copyCode": "Copy Code",
+    "share": "Share",
+    "copied": "Copied!",
+    "scanQR": "Scan this QR code to connect",
+    "expiresIn": "Expires in",
+    "expired": "Code expired",
+    "generateNew": "Generate New Code",
+    "errorCreating": "Failed to create invitation. Please try again.",
+    "shareText": "Join me on LoveCompass! Use code {{code}} or click the link"
   },
   "invitation": {
     "title": "You've Been Invited!",
-    "subtitle": "{{name}} wants to connect with you on CouplePlan",
+    "subtitle": "{{name}} wants to connect with you on LoveCompass",
     "acceptInvitation": "Accept Invitation",
     "declineInvitation": "Decline",
     "createAccount": "Create Account to Accept",
@@ -239,7 +271,7 @@
     "expired": "This invitation has expired",
     "wrongEmail": "This invitation was sent to a different email address",
     "acceptSuccess": "Invitation accepted successfully!",
-    "welcomeMessage": "Welcome to CouplePlan! You are now connected with {{name}}."
+    "welcomeMessage": "Welcome to LoveCompass! You are now connected with {{name}}."
   },
   "settings": {
     "title": "Settings",
@@ -264,10 +296,10 @@
     "deleteConfirm": "Are you sure? This action cannot be undone."
   },
   "email": {
-    "invitationSubject": "You've been invited to join CouplePlan!",
-    "invitationBody": "Hi there!\n\n{{inviterName}} has invited you to join CouplePlan - the app for couples to plan their life together.\n\nClick the link below to accept the invitation and create your account:\n\n{{invitationUrl}}\n\nThis invitation will expire in 7 days.\n\nWith love,\nThe CouplePlan Team",
-    "welcomeSubject": "Welcome to CouplePlan!",
-    "welcomeBody": "Hi {{name}},\n\nWelcome to CouplePlan! We're excited to have you on board.\n\nStart planning your life together with your partner:\n- Create shared events\n- Set couple goals\n- Manage your budget\n- Track tasks\n\nGet started now: {{appUrl}}\n\nWith love,\nThe CouplePlan Team"
+    "invitationSubject": "You've been invited to join LoveCompass!",
+    "invitationBody": "Hi there!\n\n{{inviterName}} has invited you to join LoveCompass - the app for couples to plan their life together.\n\nClick the link below to accept the invitation and create your account:\n\n{{invitationUrl}}\n\nThis invitation will expire in 7 days.\n\nWith love,\nThe LoveCompass Team",
+    "welcomeSubject": "Welcome to LoveCompass!",
+    "welcomeBody": "Hi {{name}},\n\nWelcome to LoveCompass! We're excited to have you on board.\n\nStart planning your life together with your partner:\n- Create shared events\n- Set couple goals\n- Manage your budget\n- Track tasks\n\nGet started now: {{appUrl}}\n\nWith love,\nThe LoveCompass Team"
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",
@@ -277,5 +309,42 @@
     "validation": "Please check your input and try again.",
     "database": "Database error. Please try again later.",
     "rls": "Permission denied. Please contact support."
+  },
+  "success": "Check Your Email!",
+  "join": {
+    "title": "Join Your Partner",
+    "subtitle": "Enter the 6-digit code your partner shared",
+    "connect": "Connect",
+    "connecting": "Connecting...",
+    "connected": "Connected!",
+    "connectedWith": "You are now connected with {{name}}. Start planning together!",
+    "yourPartner": "your partner",
+    "goToDashboard": "Go to Dashboard",
+    "invalidCode": "Invalid code. Please check and try again.",
+    "expiredCode": "This code has expired. Ask your partner for a new one.",
+    "cantInviteSelf": "You cannot use your own invite code.",
+    "errorAccepting": "Failed to connect. Please try again.",
+    "tryAgain": "Try Again",
+    "oops": "Oops!",
+    "needsAccount": "You need an account to connect with your partner.",
+    "alreadyHaveAccount": "Already have an account?"
+  },
+  "passwordRecovery": {
+    "title": "Forgot Password",
+    "subtitle": "Enter your email and we will send you a link to reset your password",
+    "sendResetLink": "Send Reset Link",
+    "emailSentTitle": "Check Your Email",
+    "emailSentDescription": "If an account with that email exists, we sent you a link to reset your password. Please check your inbox and spam folder.",
+    "backToLogin": "Back to Login",
+    "resetTitle": "Set New Password",
+    "resetSubtitle": "Enter your new password below",
+    "newPassword": "New Password",
+    "resetButton": "Reset Password",
+    "resetSuccessTitle": "Password Updated!",
+    "resetSuccessDescription": "Your password has been updated successfully. Redirecting you to the dashboard...",
+    "resetError": "Failed to reset password. Please try again.",
+    "invalidLink": "Invalid or Expired Link",
+    "invalidLinkDescription": "This password reset link is invalid or has expired. Please request a new one.",
+    "requestNewLink": "Request New Link"
   }
 }

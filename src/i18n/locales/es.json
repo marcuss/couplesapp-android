@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "CouplePlan",
+    "appName": "LoveCompass",
     "loading": "Cargando...",
     "save": "Guardar",
     "cancel": "Cancelar",
@@ -8,7 +8,7 @@
     "edit": "Editar",
     "add": "Agregar",
     "close": "Cerrar",
-    "back": "Atrás",
+    "back": "Volver",
     "continue": "Continuar",
     "submit": "Enviar",
     "search": "Buscar",
@@ -46,7 +46,30 @@
     "loginError": "Correo o contraseña inválidos",
     "registerError": "Error al crear la cuenta",
     "passwordMismatch": "Las contraseñas no coinciden",
-    "passwordTooShort": "La contraseña debe tener al menos 6 caracteres"
+    "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+    "namePlaceholder": "Tu nombre",
+    "dateOfBirth": "Fecha de Nacimiento",
+    "dateOfBirthPlaceholder": "Selecciona tu fecha de nacimiento",
+    "gender": "Género",
+    "genderPlaceholder": "Selecciona tu género",
+    "genderMale": "Hombre",
+    "genderFemale": "Mujer",
+    "genderQueer": "Queer",
+    "genderNonBinary": "No binario",
+    "genderOther": "Otro",
+    "relationshipType": "Tipo de Relación",
+    "relationshipTypePlaceholder": "Selecciona tu tipo de relación",
+    "relationshipDating": "Saliendo",
+    "relationshipEngaged": "Comprometidos",
+    "relationshipMarried": "Casados",
+    "relationshipCommitted": "En una relación estable",
+    "relationshipOther": "Otro",
+    "partnerName": "Nombre de tu Pareja",
+    "partnerNamePlaceholder": "Nombre de tu pareja",
+    "hasChildren": "¿Tienen hijos?",
+    "hasChildrenDescription": "De esta u otras relaciones",
+    "emailPlaceholder": "tu@correo.com",
+    "checkEmail": "Te enviamos un correo de confirmación. Por favor revisa tu bandeja de entrada para completar el registro."
   },
   "navigation": {
     "dashboard": "Panel",
@@ -213,22 +236,31 @@
     "tip3": "Las citas regulares mantienen viva la chispa"
   },
   "invite": {
-    "title": "Invitar Pareja",
-    "subtitle": "Conecta con tu pareja para comenzar a planear juntos",
+    "title": "Invita a tu Pareja",
+    "subtitle": "Comparte este código con tu pareja para conectarse",
     "partnerEmail": "Correo de tu Pareja",
     "sendInvitation": "Enviar Invitación",
     "sending": "Enviando...",
     "invitationSent": "¡Invitación enviada exitosamente!",
     "invitationError": "Error al enviar la invitación",
     "invitationLink": "Enlace de Invitación",
-    "copyLink": "Copiar Enlace",
+    "copyLink": "Copiar Link",
     "linkCopied": "¡Enlace copiado al portapapeles!",
     "shareLink": "Comparte este enlace con tu pareja",
-    "alreadyInvited": "Ya has enviado una invitación a este correo"
+    "alreadyInvited": "Ya has enviado una invitación a este correo",
+    "copyCode": "Copiar Código",
+    "share": "Compartir",
+    "copied": "¡Copiado!",
+    "scanQR": "Escanea este código QR para conectarse",
+    "expiresIn": "Expira en",
+    "expired": "Código expirado",
+    "generateNew": "Generar Nuevo Código",
+    "errorCreating": "Error al crear la invitación. Intenta de nuevo.",
+    "shareText": "¡Únete a LoveCompass conmigo! Usa el código {{code}} o haz clic en el link"
   },
   "invitation": {
     "title": "¡Has Sido Invitado!",
-    "subtitle": "{{name}} quiere conectar contigo en CouplePlan",
+    "subtitle": "{{name}} quiere conectar contigo en LoveCompass",
     "acceptInvitation": "Aceptar Invitación",
     "declineInvitation": "Declinar",
     "createAccount": "Crear Cuenta para Aceptar",
@@ -239,7 +271,7 @@
     "expired": "Esta invitación ha expirado",
     "wrongEmail": "Esta invitación fue enviada a un correo diferente",
     "acceptSuccess": "¡Invitación aceptada exitosamente!",
-    "welcomeMessage": "¡Bienvenido a CouplePlan! Ahora estás conectado con {{name}}."
+    "welcomeMessage": "¡Bienvenido a LoveCompass! Ahora estás conectado con {{name}}."
   },
   "settings": {
     "title": "Configuración",
@@ -264,10 +296,10 @@
     "deleteConfirm": "¿Estás seguro? Esta acción no se puede deshacer."
   },
   "email": {
-    "invitationSubject": "¡Has sido invitado a unirte a CouplePlan!",
-    "invitationBody": "¡Hola!\n\n{{inviterName}} te ha invitado a unirte a CouplePlan - la aplicación para que las parejas planifiquen su vida juntas.\n\nHaz clic en el enlace de abajo para aceptar la invitación y crear tu cuenta:\n\n{{invitationUrl}}\n\nEsta invitación expirará en 7 días.\n\nCon cariño,\nEl Equipo de CouplePlan",
-    "welcomeSubject": "¡Bienvenido a CouplePlan!",
-    "welcomeBody": "Hola {{name}},\n\n¡Bienvenido a CouplePlan! Estamos emocionados de tenerte a bordo.\n\nComienza a planificar tu vida junto con tu pareja:\n- Crear eventos compartidos\n- Establecer metas de pareja\n- Gestionar tu presupuesto\n- Seguir tareas\n\nComienza ahora: {{appUrl}}\n\nCon cariño,\nEl Equipo de CouplePlan"
+    "invitationSubject": "¡Has sido invitado a unirte a LoveCompass!",
+    "invitationBody": "¡Hola!\n\n{{inviterName}} te ha invitado a unirte a LoveCompass - la aplicación para que las parejas planifiquen su vida juntas.\n\nHaz clic en el enlace de abajo para aceptar la invitación y crear tu cuenta:\n\n{{invitationUrl}}\n\nEsta invitación expirará en 7 días.\n\nCon cariño,\nEl Equipo de LoveCompass",
+    "welcomeSubject": "¡Bienvenido a LoveCompass!",
+    "welcomeBody": "Hola {{name}},\n\n¡Bienvenido a LoveCompass! Estamos emocionados de tenerte a bordo.\n\nComienza a planificar tu vida junto con tu pareja:\n- Crear eventos compartidos\n- Establecer metas de pareja\n- Gestionar tu presupuesto\n- Seguir tareas\n\nComienza ahora: {{appUrl}}\n\nCon cariño,\nEl Equipo de LoveCompass"
   },
   "errors": {
     "generic": "Algo salió mal. Por favor intenta de nuevo.",
@@ -277,5 +309,42 @@
     "validation": "Por favor verifica tu entrada e intenta de nuevo.",
     "database": "Error de base de datos. Por favor intenta más tarde.",
     "rls": "Permiso denegado. Por favor contacta soporte."
+  },
+  "success": "¡Revisa tu Correo!",
+  "join": {
+    "title": "Únete a tu Pareja",
+    "subtitle": "Ingresa el código de 6 dígitos que tu pareja compartió",
+    "connect": "Conectar",
+    "connecting": "Conectando...",
+    "connected": "¡Conectados!",
+    "connectedWith": "Ahora estás conectado con {{name}}. ¡Comiencen a planear juntos!",
+    "yourPartner": "tu pareja",
+    "goToDashboard": "Ir al Dashboard",
+    "invalidCode": "Código inválido. Revisa e intenta de nuevo.",
+    "expiredCode": "Este código ha expirado. Pide uno nuevo a tu pareja.",
+    "cantInviteSelf": "No puedes usar tu propio código de invitación.",
+    "errorAccepting": "Error al conectar. Intenta de nuevo.",
+    "tryAgain": "Intentar de Nuevo",
+    "oops": "¡Ups!",
+    "needsAccount": "Necesitas una cuenta para conectarte con tu pareja.",
+    "alreadyHaveAccount": "¿Ya tienes cuenta?"
+  },
+  "passwordRecovery": {
+    "title": "¿Olvidaste tu contraseña?",
+    "subtitle": "Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña",
+    "sendResetLink": "Enviar enlace",
+    "emailSentTitle": "Revisa tu correo",
+    "emailSentDescription": "Si existe una cuenta con ese correo, te enviamos un enlace para restablecer tu contraseña. Revisa tu bandeja de entrada y la carpeta de spam.",
+    "backToLogin": "Volver al inicio de sesión",
+    "resetTitle": "Nueva contraseña",
+    "resetSubtitle": "Ingresa tu nueva contraseña",
+    "newPassword": "Nueva contraseña",
+    "resetButton": "Restablecer contraseña",
+    "resetSuccessTitle": "¡Contraseña actualizada!",
+    "resetSuccessDescription": "Tu contraseña ha sido actualizada. Redirigiendo al dashboard...",
+    "resetError": "No se pudo restablecer la contraseña. Intenta de nuevo.",
+    "invalidLink": "Enlace inválido o expirado",
+    "invalidLinkDescription": "Este enlace de restablecimiento es inválido o ha expirado. Solicita uno nuevo.",
+    "requestNewLink": "Solicitar nuevo enlace"
   }
 }
